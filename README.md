@@ -16,7 +16,7 @@ This project is implemented using the following technologies:
 
 ## Objective
 
-The main goal of this project is to generate random inspirational quotes and display them on a web page. We mixed Ruby and Go to write server-side logic and used Sinatra and Go's HTTP package to build the web server.
+The main goal of this project is to generate random inspirational quotes and display them on a web page. I mixed Ruby and Go to write server-side logic and used Sinatra and Go's HTTP package to build the web server.
 
 ## How to Run
 
