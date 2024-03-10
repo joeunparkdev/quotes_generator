@@ -1,18 +1,24 @@
+
 require 'sinatra'
 require 'net/http'
 require 'json'
 
 get '/' do
-  # Go 서버의 엔드포인트로 HTTP GET 요청을 보냄
-  uri = URI.parse('http://localhost:8080/go-endpoint')
-  response = Net::HTTP.get_response(uri)
-  
-  # 응답을 처리
-  if response.code == '200'
-    @message = JSON.parse(response.body)['message']
-  else
-    @message = "요청에 실패했습니다."
-  end
-  
+  # 명언을 가져올 외부 API URL
+  url = URI("https://type.fit/api/quotes")
+
+  # API에 GET 요청 보내기
+  response = Net::HTTP.get(url)
+
+  # 응답을 JSON으로 파싱
+  quotes = JSON.parse(response)
+
+  # 명언 중에서 랜덤으로 선택
+  random_quote = quotes.sample
+
+  # 선택된 명언 및 작가 반환
+  @quote = random_quote['text']
+  @author = random_quote['author']
+
   erb :index
 end
